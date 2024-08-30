@@ -473,7 +473,7 @@ Objet
 Array
 Nombre
 Chaîne de caractères
-true
+tru
 false
 null
 
