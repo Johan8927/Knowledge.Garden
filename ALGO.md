@@ -1,4 +1,4 @@
-<h2>println (fonction(élément a print))
+<h2>println (fonction(élément a print)) 
 
 
 <h2>Une fonction get... qui prend un tableau en paramètre :

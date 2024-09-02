@@ -1,5 +1,5 @@
 ## this = this est un opérateur et comme tout opérateur, il retourne une valeur
-
+## Lorsqu'une fonction est appelée comme méthode d'un objet, this correspondra à l'objet possédant la méthode qu'on appelle
 ## Import et export de modules=
 
 Exporter des fonctionnalités
@@ -502,6 +502,144 @@ Ce sont les initiales de Single Page Applications. Ce sont des applis dans lesqu
 RTA ?
 -
 RTA ça veut dire Real Time Applications, ce sont les applications en temps réel, ce sont ces applications qui ont besoin de se mettre à jour super fréquemment.
+
+-------
+
+rôle du this =
+-----
+
+L'opérateur this
+-
+En JavaScript, le mot-clé this se comporte légèrement différemment des autres langages de programmation. Son comportement variera également légèrement selon qu'on utilise le mode strict ou le mode non-strict.
+
+Dans la plupart des cas, la valeur de this sera déterminée à partir de la façon dont une fonction est appelée. Il n'est pas possible de lui affecter une valeur lors de l'exécution et sa valeur peut être différente à chaque fois que la fonction est appelée. La méthode bind() a été introduite avec ECMAScript 5 pour définir la valeur de this pour une fonction, indépendamment de la façon dont elle est appelée. 
+
+ECMAScript 2015 (ES6) a ajouté les fonctions fléchées dans lesquelles this correspond à la valeur du contexte englobant.
+--
+
+
+Exemple interactif
+--
+const test = {
+prop: 42,
+func: function () {
+return this.prop;
+},
+};
+
+console.log(test.func());
+// Expected output: 42
+
+---
+
+Un SPA (Single Page Application) est une application web qui fonctionne à l'intérieur d'une seule page HTML. Le contenu est chargé dynamiquement sans recharger la page complète à chaque interaction de l'utilisateur.
+
+Voici un schéma simplifié du fonctionnement d'une SPA :
+
+Initial Load (Chargement initial):
+
+Le navigateur envoie une requête au serveur.
+Le serveur renvoie une page HTML de base avec les scripts JavaScript nécessaires.
+Rendering (Rendu):
+
+Le navigateur charge et exécute le JavaScript.
+Le JavaScript manipule le DOM pour afficher le contenu initial de l'application.
+User Interaction (Interaction utilisateur):
+
+Lorsqu'un utilisateur interagit (ex : clique sur un bouton ou un lien), l'application JavaScript intercepte ces interactions.
+Le JavaScript envoie des requêtes AJAX/Fetch au serveur pour demander des données supplémentaires.
+Dynamic Content Update (Mise à jour dynamique du contenu):
+
+Le serveur retourne des données (souvent au format JSON) en réponse aux requêtes.
+JavaScript met à jour le DOM avec les nouvelles données sans recharger la page.
+Visualisation schématique :
+
+sql
+
++------------------------------------+
+|  Navigateur (Browser)              |
+|                                    |
+|  1. Requête initiale vers le serveur (HTTP)    |
+|  --------------------------------->|
+|                                    |
+|  2. Réception de l'HTML/CSS/JS     |
+|  <---------------------------------|
+|                                    |
+|  3. Rendu initial (DOM)            |
+|                                    |
+|  4. Interactions utilisateur (ex: clics)  |
+|    -> JS intercepte l'événement    |
+|    -> Envoie requête AJAX/Fetch    |
+|  --------------------------------->|
+|                                    |
+|  5. Réception de données JSON      |
+|  <---------------------------------|
+|                                    |
+|  6. Mise à jour dynamique du DOM   |
++------------------------------------+
+Tableau Comparatif des Principaux Frameworks JavaScript
+Voici un tableau comparatif des principaux frameworks SPA (Single Page Application) : React, Vue.js, et Angular.
+
+Framework	Date de création	Communauté / Entreprise	Licence	Points forts	Points faibles
+React	2013	Facebook et communauté	MIT	- Très performant grâce au DOM virtuel	- Nécessite souvent des bibliothèques supplémentaires pour les fonctionnalités avancées
+- Grande communauté et écosystème riche	- Courbe d'apprentissage pour comprendre les concepts comme JSX
+- Flexibilité dans l'architecture des applications	- Pas de directives ou d'outils de build par défaut
+- Très utilisé pour les applications web modernes	- Peut être trop flexible pour les débutants
+- Composants réutilisables
+  Vue.js	2014	Evan You et communauté	MIT	- Facile à apprendre et à utiliser	- Moins de soutien des grandes entreprises que React ou Angular
+- Documentation bien structurée	- Moins de composants et plugins que React ou Angular
+- Performances élevées	- Les grandes mises à jour peuvent introduire des incompatibilités
+- Flexibilité et réactivité (two-way data binding)	- Manque de directives comparées à Angular
+- Taille légère
+  Angular	2010 (AngularJS)	Google et communauté	MIT	- Framework complet avec de nombreuses fonctionnalités intégrées (outils CLI, routage, etc.)	- Courbe d'apprentissage abrupte en raison de sa complexité
+  2016 (Angular)			- Structure stricte qui favorise les bonnes pratiques	- Plus verbeux et moins flexible que React ou Vue
+- Support à long terme par Google	- Plus lourd et complexe pour les petites applications
+- Utilise TypeScript pour une meilleure gestion des types	- Mises à jour majeures fréquentes pouvant introduire des cassures
+  Explications complémentaires
+  React : Une bibliothèque JavaScript pour la construction d'interfaces utilisateur. Il se concentre principalement sur la vue dans le modèle MVC (Model-View-Controller). React utilise un DOM virtuel pour optimiser le rendu.
+
+Vue.js : Un framework JavaScript progressif pour la création d'interfaces utilisateur. Il est conçu pour être adaptable, combinant les meilleures parties des frameworks comme Angular et React. Vue.js est souvent apprécié pour sa simplicité et sa facilité d'intégration.
+
+Angular : Un framework complet développé par Google. Angular propose un ensemble complet d'outils intégrés pour le développement de SPA, y compris le routage, les formulaires, la validation, et bien plus. Il utilise TypeScript, un sur-ensemble de JavaScript qui ajoute des fonctionnalités de typage statique.
+
+Aperçu d'un projet Vue
+Le projet Vue fraîchement créé a les dossiers et fichiers suivants :
+
+src : les sources de votre projet
+public : tout le contenu qui sera directement copié tel quel à la racine du serveur web
+package.json : les informations de package NPM du projet (version, dépendances, scripts etc.)
+vite.config.js : le fichier de configuration pour Vite sur ce projet
+D'autres fichiers de configuration pour les outils de build peuvent également se trouver ici.
+
+Dans le dossier src, vous trouvez :
+
+assets : les ressources statiques (images, fichiers) utilisées au sein de vos composants Vue
+components : vos composants Vue (répartis par dossier par "module" de votre application)
+App.vue : votre composant Vue racine, qui contient toute l'application
+main.js : le point d'entrée du code JavaScript de toute l'application
+Par la suite, vous pourrez être amenés à créer d'autres dossiers dans src selon vos besoins. On trouve par exemple couramment un dossier services qui contient des briques de logique métier avec des fonctions utilisées dans plusieurs composants. Ou encore un dossier utils pour venir stocker diverses fonctions utilitaires en JavaScript plutôt que de les répéter à plusieurs endroits.
+
+![img_3.png](img_3.png)
+Cheat sheet de la structure de fichiers d'un projet Vue
+
+Une application dans Vue.js est divisée en plusieurs composants
+Un composant correspond à un fichier .vue
+Un fichier .vue se compose de trois éléments optionnels :
+la balise <template> contient le code HTML du composant
+la balise <script> (optionnelle) contient le code JavaScript du composant
+la balise <style> (optionnelle) contient le style CSS du composant
+
+ossier views
+Le dossier views contient généralement les composants qui correspondent aux pages de l'application. Voici quelques caractéristiques des fichiers dans le dossier views :
+
+Pages complètes : Les fichiers dans le dossier views sont souvent des composants qui représentent des pages entières de l'application, comme une page d'accueil, une page de profil utilisateur, ou une page de paramètres. Ces composants sont directement associés à une route dans l'application (par exemple, /home, /profile, /settings).
+
+Composants de niveau supérieur : Les composants dans le dossier views sont souvent appelés "composants de niveau supérieur" ou "composants de page". Ils servent de conteneurs pour d'autres composants plus petits. Par exemple, une vue de tableau de bord (DashboardView.vue) peut inclure des composants comme Header.vue, Sidebar.vue, et DashboardContent.vue.
+
+Association avec le routage : Dans des frameworks avec un système de routage, les vues sont souvent directement associées aux routes définies dans la configuration du routeur. Par exemple, une route /login peut rendre la vue LoginView.vue depuis le dossier views.
+
+
+
 
 
 
