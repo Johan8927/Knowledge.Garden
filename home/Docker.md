@@ -47,3 +47,7 @@ code source = application/site
 
 instance de l'image qui est un conteneur = registery(DockerHub) 
 
+docker-compose up --build = commande
+-
+build les docker file des framework front et back (vue, laravel) avec leurs dockerfiles respectifs et le dockercompose.yml
+---
