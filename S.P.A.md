@@ -638,6 +638,10 @@ Composants de niveau supérieur : Les composants dans le dossier views sont souv
 
 Association avec le routage : Dans des frameworks avec un système de routage, les vues sont souvent directement associées aux routes définies dans la configuration du routeur. Par exemple, une route /login peut rendre la vue LoginView.vue depuis le dossier views.
 
+----------------------
+
+
+
 
 
 

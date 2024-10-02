@@ -369,3 +369,118 @@ L'annotation @Override indique en effet que la méthode est héritée de la clas
 Les énumérations permettent de définir un ensemble fini de constantes, chacune d'entre-elles est séparée des autres par une virgule.
 -
 ---------
+
+une interface
+-
+est un type de référence qui permet de définir un contrat ou un ensemble de méthodes que les classes doivent implémenter. Elle est similaire à une classe abstraite, mais une interface ne peut contenir que des déclarations de méthodes (jusqu'à Java 8, où quelques exceptions ont été ajoutées). Les méthodes d'une interface sont abstraites par défaut, c'est-à-dire qu'elles ne contiennent pas de corps.
+-
+
+Voici un exemple basique d'interface :
+-
+
+
+
+
+          public interface Vehicule {
+
+                void demarrer();
+
+                void arreter();
+                                    }
+
+<img alt="img_7.png" height="500" src="img_7.png" width="700"/>
+
+Contrat de service = Ensemble de méthodes communes pour des classes abstraites
+-
+body d'une méthode = les instructions a l'intérieur
+-
+![img_8.png](img_8.png)
+
+
+
+Caractéristiques principales d'une interface :
+Pas d'implémentation par défaut : Les méthodes déclarées dans une interface n'ont pas de corps, c'est à la classe qui implémente l'interface de fournir le comportement de ces méthodes.
+Implémentation multiple : Une classe peut implémenter plusieurs interfaces, ce qui n'est pas possible avec l'héritage de classes (une classe ne peut hériter que d'une seule autre classe).
+Constantes uniquement : Une interface peut contenir des variables, mais celles-ci sont implicitement public, static, et final. Elles sont donc des constantes.
+Utilisation de polymorphisme : Les interfaces sont souvent utilisées pour réaliser le polymorphisme en Java. Une instance d'une classe qui implémente une interface peut être traitée comme une instance de cette interface.
+Implémentation d'une interface :
+Une classe qui implémente une interface doit redéfinir toutes les méthodes de celle-ci.
+
+    public class Voiture implements Vehicule {
+
+    @Override
+    public void demarrer() {
+        System.out.println("La voiture démarre.");
+    }
+
+    @Override
+    public void arreter() {
+        System.out.println("La voiture s'arrête.");
+    }
+}
+
+----------------------------
+INSTANCE
+-
+Une instance est une mise en application d’une classe. Comparaison proposée :Une classe = un modèle 3D d’une moto. Une instance est une des motos qui a été créée à partir du modèle. Elle va vivre sa vie. La moto A et la moto B sont issues du même modèle donc de la même classe, elles vont avoir les mêmes fonctions, propriétés, mais les valeurs de leurs attributs vont changer. La moto A peut être bleue et avoir 120 000 km alors que la moto B est rouge et vient de sortir d’usine. Ce sont deux instances d’une même classe.|
+
+#VISIBILITE
+-
+La visibilité d’une fonction ou d’une variable permet de restreindre ou d’ouvrir son utilisation.Il en existe 3On va faire des exemples avec une classe Car avec une propriété plateNumberpublic : La propriété va être accessible depuis n’importe quel endroit.On peut donc faireprivate : La propriété n’est accessible qu’à l’intérieur de la classe où elle est définie On ne peut plus faireOn doit passer par un getter/setter :  Est à mi-chemin entre private et protected, elle ne sera accessible que par les classes situées dans le même package (ici le même package que Car) ou par les classe qui vont en hériter (extends Car)
+
+#STATIC
+-
+La plupart des classes sont faites pour être instanciées avec un constructeur. Exemple new Car(). Ce sont des classes qui vont évoluer avec le temps et qui ont des valeurs qui vont changer. Certaines classes plus utilitaires ne vont pas avoir d’instanciation car les valeurs de leurs attributs ne changent pas (ce sont des constantes). Il est possible d’utiliser des méthodes d’une classe sans l’instancier cependant il faut que toutes les variables de cette méthode et la méthode elle-même soient « static » c’est-à-dire qu’elles ne changent pas de comportement en fonction du contexte. On peut imaginer une classe de transformation de fichiers :
+On voit une méthode convertXlsxToPdf qui prend un paramètre et va effectuer des opérations dessus. Il n’y a pas besoin de stocker quoi que ce soit comme donnée dans la classe de conversion. D’où le passage en static. On peut l’appeler sans utiliser le newOn applique la méthode directement sur le nom de classe PdfTransformer. C’est souvent pratique dans le Pattern Singleton par exemple.
+
+#ANNOTATION
+-
+Les annotations servent dans certains framework afin d’aller plus vite dans le développement ou pour ajouter de la documentation. Ils commencent par @
+
+#IMPORTS
+-
+Les imports sont la liste des classes (complètes avec la déclaration du package) utilisées dans la classe que nous créons.
+
+#HERITAGE
+-
+On n’aime pas dupliquer du code. Dans cette optique, on essaie de mutualiser. Quand on a plusieurs classes avec des méthodes ou attributs en commun, on créer une classe commune, qu’on appelle classe mère. Exemple piqué sur le net :
+Dans ce cas on dit de la classe Chien qu’elle hérite de la classe Animal. A noter qu’une classe ne peut étendre qu’une autre classe.|
+
+#🔣 Mots clés
+-
+On utilise le mot clé extends pour signifier que la classe actuelle hérite d’une autre classe.
+Ici la classe Gobelin hérite de la classe Enemy. Ce qui veut dire qu’elle possède naturellement tous les attributs et méthodes de la casse Ennemy.|
+
+#OVERRIDE
+--
+
+C’est une annotation dans une classe fille qui indique qu’on implémente la méthode (abstraite ou non) de la classe mère afin de changer son fonctionnement.Dans cet exemple, nous avons surchargé la méthode getHeroes() de la classe parent.|
+
+#CLASSE ABSTRAITE
+-
+
+Une classe abstraite est une classe un peu spéciale. Elle ne peut pas être instanciée, elle est vouée à être héritée. On s’en sert principalement pour factoriser le code (donc le mutualiser). On ajoute le mot clé abstract sur la définition de la classe. On peut forcer les classes filles à implémenter des fonctions en écrivant abstract devant des méthodes. Dans ce cas, la classe fille qui en hérite aura accès à toutes les méthodes de la classe mère mais devra surcharger les méthodes « abstraites ». Voici un exemple :
+On a une classe abstraite Language. On ne peut donc pas faire new Language() ; On est obligé de créer des classes qui en hérite. Cette classe contient une method2 qui est fonctionnelle (avec un corps de méthode et pas de mot clé abstract) et une méthode1 qui n’a pas de corps, qui doit donc être réécrite dans la classe fille. (Souvent l’IDE vous souligne en disant « Add unimplemented methods »)
+
+#INTERFACE
+-
+
+Une interface est un descriptif d’une classe. On appelle ça souvent un contrat.Ca peut être vu de loin comme une classe hyper abstraite donc avec aucun corps de méthode.Il est possible d’implémenter plusieurs interfaces.
+![img_4.png](img_4.png)
+
+
+Le mot clé « super »
+-
+permet depuis une classe fille d’appeler une classe mère. Par exemple, quand une classe mère a un constructeur vide, lorsque nous allons créer notre constructeur de la classe fille, la première ligne sera super() qui appelle le constructeur de la classe mère. Nous pouvons appeler d’autres méthodes de cette classe comme
+
+             super.alphaMethod1()
+qui appellera la méthode alphaMethod1 de la classe mère.
+
+--------------
+
+![img_5.png](img_5.png)
+![img_6.png](img_6.png)
+
+
+
+ 
